@@ -59,6 +59,7 @@ class Cam {
   }
   
   void update() {
+    updateControls();
     updateMatrix();
   }
   

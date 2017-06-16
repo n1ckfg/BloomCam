@@ -22,7 +22,6 @@ void draw() {
   }
  
   tex.beginDraw();
-  updateControls();
   cam.run();
   
   tex.background(0);
