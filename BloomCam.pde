@@ -43,5 +43,8 @@ void keyPressed() {
 */
 
 void mouseReleased() {
+  Stroke s = strokes.get(strokes.size()-1);
+  s.deltaDiv *= 3;
+  s.spread /= 3;
   strokes.add(new Stroke());
 }
