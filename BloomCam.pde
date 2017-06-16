@@ -1,5 +1,6 @@
 ArrayList<Stroke> strokes = new ArrayList<Stroke>();
 Cam cam;
+PVector camOrigPos;
 
 void setup() {
   size(1280, 720, P3D);
@@ -8,6 +9,7 @@ void setup() {
   strokeCap(ROUND);
   cam = new Cam();
   bloomSetup();
+  syphonSetup();
 }
 
 void draw() {
@@ -15,14 +17,14 @@ void draw() {
     if (strokes.size() < 1) strokes.add(new Stroke());
     Stroke s = strokes.get(strokes.size()-1);
     if (s.points.size() < 1 || dist(mouseX, mouseY, pmouseX, pmouseY) > 2) {
-      s.points.add(new PVector(mouseX, mouseY));
+      s.points.add(new PVector(cam.mouse.x, cam.mouse.y, cam.mouse.z));
     }
   }
  
   tex.beginDraw();
   updateControls();
   cam.run();
-
+  
   tex.background(0);
   for (int i=0; i<strokes.size(); i++) {
     strokes.get(i).run();
@@ -30,7 +32,8 @@ void draw() {
   tex.endDraw();  
   
   bloomDraw();
-   
+  syphonDraw();
+  
   surface.setTitle(""+frameRate);
 }
 

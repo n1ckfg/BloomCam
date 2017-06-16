@@ -5,32 +5,61 @@ class Cam {
   PVector poi = new PVector(0,0,0);
   PVector up = new PVector(0,0,0);
 
+  PVector mouse = new PVector(0,0,0);
+  PMatrix3D proj, cam, modvw, modvwInv, screen2Model;
+  
+  void initMatrix() {
+    proj = new PMatrix3D();
+    cam = new PMatrix3D();
+    modvw = new PMatrix3D();
+    modvwInv = new PMatrix3D();
+    screen2Model = new PMatrix3D();
+  }
+  
+  void updateMatrix() {
+    //proj = tex.projection.get();
+    cam = tex.camera.get();
+    //modvw = tex.modelview.get();
+    modvwInv = tex.modelviewInv.get();
+    screen2Model = modvwInv;
+    screen2Model.apply(cam);
+    float screen[] = {mouseX, mouseY, poi.z};
+    float model[] = new float[3];
+    screen2Model.mult(screen, model);
+    
+    mouse = new PVector(model[0] + (poi.x - width/2), model[1] + (poi.y - height/2), model[2]);
+  }
+  
   Cam() {
     defaultPos();
     defaultPoi();
     defaultUp();
+    initMatrix();
   }
   
   Cam(PVector _pos) {
     pos = _pos;
     defaultPoi();
     defaultUp();
+    initMatrix();
   }
   
   Cam(PVector _pos, PVector _poi) {
     pos = _pos;
     poi = _poi;
     defaultUp();
+    initMatrix();
   }
   
   Cam(PVector _pos, PVector _poi, PVector _up) {
     pos = _pos;
     poi = _poi;
     up = _up;
+    initMatrix();
   }
   
   void update() {
-    //
+    updateMatrix();
   }
   
   void draw() {
