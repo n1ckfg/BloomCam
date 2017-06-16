@@ -2,7 +2,11 @@ class Stroke {
 
   ArrayList<PVector> points;
   float deltaDiv = 2;
-  float spread = 10;
+  float deltaMin = 1;
+  float deltaReset = 2 * deltaMin;
+  float spreadOrig = 10;
+  float spread = spreadOrig;
+  float friction = 0.98;
   
   Stroke() {
     points = new ArrayList<PVector>();
@@ -18,9 +22,12 @@ class Stroke {
     for (int i=0; i<points.size(); i++) {
       PVector p = points.get(i);
       float delta = dist(mouseX,mouseY,pmouseX,pmouseY)/deltaDiv;
+      if (delta < deltaMin) delta = deltaMin;
+      if (delta > deltaReset) spread = spreadOrig;
       tex.strokeWeight(delta);
       tex.stroke(255, 127, 0, 127);
-      tex.vertex(p.x, p.y, p.z + random(-delta, delta));
+      float deltaFinal = delta * (spread/spreadOrig);
+      tex.vertex(p.x, p.y, p.z + random(-deltaFinal, deltaFinal));
     }
     tex.endShape();
     tex.beginShape();
@@ -31,6 +38,7 @@ class Stroke {
       tex.vertex(p.x, p.y, p.z + random(-spread, spread));
     }
     tex.endShape();
+    spread *= friction;
   }
 
   void run() {
