@@ -4,6 +4,11 @@ import codeanticode.syphon.*;
 
 SyphonServer server;
 
+void settings() {
+  size(1280, 720, P3D);
+  PJOGL.profile = 1;
+}
+
 void syphonSetup() {
   server = new SyphonServer(this, "Processing Syphon");
 }
