@@ -1,35 +1,37 @@
-/*
-// MAC
+String serverName = "BloomCam_Server";
+//PGraphics tex;
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+// SYPHON (MAC)
 import codeanticode.syphon.*;
 
 SyphonServer server;
 
-void settings() {
-  size(1280, 720, P3D);
-  PJOGL.profile = 1;
+void setupSyphon() {
+  //tex = createGraphics(width, height, P2D);
+  server = new SyphonServer(this, serverName);
 }
 
-void syphonSetup() {
-  server = new SyphonServer(this, "Processing Syphon");
-}
-
-void syphonDraw() {
+void updateSyphon() {
   server.sendImage(tex);
 }
-*/
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-
-// WIN
+/*
+// SPOUT (WIN)
 import spout.*;
 
 Spout server;
 
-void syphonSetup() {
+void setupSyphon() {
+  tex = createGraphics(width, height, P2D);
   server = new Spout(this);
-  server.createSender("Processing Spout");
+  server.createSender(serverName);
 }
 
-void syphonDraw() {
-  server.sendTexture();
+void updateSyphon() {
+  server.sendTexture(tex);
 }
+*/
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~

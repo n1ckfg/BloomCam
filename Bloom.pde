@@ -7,7 +7,7 @@ DwPixelFlow context;
 DwFilter filter;
 PGraphics3D tex;
 
-void bloomSetup() {
+void setupBloom() {
   tex = (PGraphics3D) createGraphics(width, height, P3D);
   context = new DwPixelFlow(this);
   filter = new DwFilter(context);
@@ -16,7 +16,7 @@ void bloomSetup() {
   filter.bloom.param.radius = 0.5; // 0.0-1.0
 }
 
-void bloomDraw() {
+void drawBloom() {
   filter.bloom.apply(tex);
   image(tex, 0, 0);
 }

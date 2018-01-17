@@ -8,8 +8,9 @@ void setup() {
   strokeJoin(ROUND);
   strokeCap(ROUND);
   cam = new Cam();
-  bloomSetup();
-  syphonSetup();
+  setupBloom();
+  setupSyphon();
+  setupShaders();
 }
 
 void draw() {
@@ -28,10 +29,12 @@ void draw() {
   for (int i=0; i<strokes.size(); i++) {
     strokes.get(i).run();
   }
+  tex.filter(shader);
   tex.endDraw();  
+  updateShaders();
   
-  bloomDraw();
-  syphonDraw();
+  drawBloom();
+  updateSyphon();
   
   surface.setTitle(""+frameRate);
 }
