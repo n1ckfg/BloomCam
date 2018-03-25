@@ -4,6 +4,7 @@ String serverName = "BloomCam_Server";
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 // SYPHON (MAC)
+/*
 import codeanticode.syphon.*;
 
 SyphonServer server;
@@ -16,7 +17,7 @@ void setupSyphon() {
 void updateSyphon() {
   server.sendImage(tex);
 }
-
+*/
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 /*
 // SPOUT (WIN)

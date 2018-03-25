@@ -9,7 +9,7 @@ void setup() {
   strokeCap(ROUND);
   cam = new Cam();
   setupBloom();
-  setupSyphon();
+  //setupSyphon();
   setupShaders();
 }
 
@@ -34,7 +34,7 @@ void draw() {
   updateShaders();
   
   drawBloom();
-  updateSyphon();
+  //updateSyphon();
   
   surface.setTitle(""+frameRate);
 }
