@@ -19,7 +19,9 @@ void keyPressed() {
       Stroke s = strokes.get(i);
       LatkStroke st = new LatkStroke(s.points, s.col);
       for (int j=0; j<st.points.size(); j++) {
-        st.points.get(j).mult(1);
+        PVector pt = st.points.get(j);
+        pt = new PVector(pt.z, -pt.y, pt.x).mult(0.1);
+        st.points.set(j, pt);
       }
       latk.layers.get(0).frames.get(0).strokes.add(st);
     }
