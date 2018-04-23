@@ -12,6 +12,19 @@ boolean keySpace = false;
 
 void keyPressed() {
   checkKeyChar(key, true);
+  
+  if (key == 'o') {
+    Latk latk = new Latk();
+    for (int i=0; i<strokes.size(); i++) {
+      Stroke s = strokes.get(i);
+      LatkStroke st = new LatkStroke(s.points, s.col);
+      for (int j=0; j<st.points.size(); j++) {
+        st.points.get(j).mult(1);
+      }
+      latk.layers.get(0).frames.get(0).strokes.add(st);
+    }
+    latk.write();
+  }
 }
 
 void keyReleased() {

@@ -7,6 +7,7 @@ class Stroke {
   float spreadOrig = 10;
   float spread = spreadOrig;
   float friction = 0.98;
+  color col = color(255, 127, 0, 127);
   
   Stroke() {
     points = new ArrayList<PVector>();
@@ -25,7 +26,7 @@ class Stroke {
       if (delta < deltaMin) delta = deltaMin;
       if (delta > deltaReset) spread = spreadOrig;
       tex.strokeWeight(delta);
-      tex.stroke(255, 127, 0, 127);
+      tex.stroke(col);
       float deltaFinal = delta * (spread/spreadOrig);
       tex.vertex(p.x, p.y, p.z + random(-deltaFinal, deltaFinal));
     }
