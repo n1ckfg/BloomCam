@@ -25,7 +25,11 @@ void shaderSetSize(PShader ps) {
 }
 
 void shaderSetMouse(PShader ps) {
-  if (mousePressed) shaderMousePos = new PVector(mouseX, height - mouseY);
+  if (pmouseX != mouseX || pmouseY != mouseY) { 
+    shaderMousePos = new PVector(mouseX, height - mouseY);
+  } else {
+    shaderMousePos = new PVector(-width, -height);
+  }
   ps.set("iMouse", shaderMousePos.x, shaderMousePos.y, shaderMouseClick.x, shaderMouseClick.y);
 }
 

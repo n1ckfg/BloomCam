@@ -54,17 +54,6 @@ boolean checkKeyChar(char k, boolean b) {
   }
 }
 
-/*
-boolean checkKeyCode(int k, boolean b) {
-  switch (k) {
-    case SHIFT:
-      return keyShift = b;
-    default:
-      return b;
-  }
-}
-*/
-
 void updateControls() {
   if (keyW) cam.move(0,0,-delta);
   if (keyS) cam.move(0,0,delta);
@@ -88,4 +77,11 @@ void keysOff() {
   keyQ = false;
   keyE = false;
   keySpace = false;
+}
+
+void mouseReleased() {
+  Stroke s = strokes.get(strokes.size()-1);
+  s.deltaDiv *= 3;
+  s.spread /= 3;
+  strokes.add(new Stroke());
 }

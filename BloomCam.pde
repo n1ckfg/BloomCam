@@ -3,7 +3,8 @@ Cam cam;
 PVector camOrigPos;
 
 void setup() {
-  size(1280, 720, P3D);
+  fullScreen(P3D);
+  noCursor();
   background(0);
   strokeJoin(ROUND);
   strokeCap(ROUND);
@@ -37,17 +38,4 @@ void draw() {
   //updateSyphon();
   
   surface.setTitle(""+frameRate);
-}
-
-/*
-void keyPressed() {
-  strokes = new ArrayList<Stroke>();
-}
-*/
-
-void mouseReleased() {
-  Stroke s = strokes.get(strokes.size()-1);
-  s.deltaDiv *= 3;
-  s.spread /= 3;
-  strokes.add(new Stroke());
 }
